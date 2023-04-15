@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator App</title>
+</head>
+<body>
+    <div class="calculator-wrapper">
+        <h1>Calculator</h1>
+        <div class="calculator-container">
+            <div type="text" class="calculator-screen" value="0" title="text-input" disabled>
+                <p class="screen-display">0</p>
+            </div>
+        
+            <div class="calculator-keys">
+                <button class="number one" value="1">1</button>
+                <button class="number two" value="2">2</button>
+                <button class="number three" value="3">3</button>
+                <button class="operator addition-key" value="+" data-action="add">+</button>
+                <button class="number four" value="4">4</button>
+                <button class="number five" value="5">5</button>
+                <button class="number six" value="6">6</button>
+                <button class="operator subtract-key" value="-" data-action="subtract">-</button>
+                <button class="number seven" value="7">7</button>
+                <button class="number eight" value="8">8</button>
+                <button class="number nine" value="9">9</button>
+                <button class="operator division-key" value="/" data-action="divide">/</button>
+                <button class="number zero">0</button>
+                <button class="operator clear-key" value="clear" data-action="clear">AC</button>
+                <button class="decimal multiplication-key" value="." data-action="decimal">.</button>
+                <button class="operator multiplication" value="*" data-action="multiply">&times;</button>
+                <button class="operator equal-key" value="=" data-action="calculate">=</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="./main.js"></script>
+</body>
+</html>
