@@ -60,7 +60,6 @@ body {
 }
 
 .calculator {
-    outline: red solid;
     display: grid;
     place-items: center;
     width: 90%;
@@ -73,19 +72,10 @@ body {
 
     display: grid;
     place-items: center;
-    
-    /* width: 90%; */
+
     max-width: 500px;
 
-    /* padding: 0.5em 0; */
     top: 2.5%;
-    /* left: auto;
-    right: auto;
-    padding: 1em; */
-
-    
-    
-    outline: rgb(241, 240, 240) solid;
 }
 
 
