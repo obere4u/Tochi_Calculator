@@ -75,15 +75,15 @@ body {
 
     max-width: 500px;
 
-    top: 2.5%;
+    top: 10px;
 }
 
 
 
 .calculator-wrapper h1 {
-  font-family: Hasklug, 'AnteriSignature';  
+  font-family:  Hasklug, 'AnteriSignature', 'Roboto', sans-serif;  
   font-weight: 800;
-  font-size: 3rem;
+  font-size: 2rem;
   text-transform: uppercase;
   text-align: center;
 
@@ -96,7 +96,7 @@ body {
 
 @media (max-width: 350px) {
     .calculator-wrapper h1 {
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
 
     .calculator-container {
