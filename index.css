@@ -133,8 +133,8 @@ body {
         var(--lightBlue),
         var(--darkBlue)
     );
-    animation: bg-rotation 5s alternate infinite;
-    filter: blur(10em);
+    animation: bg-rotation 0.5s linear infinite;
+    filter: blur(8em);
 }
 
 @keyframes bg-rotation {
@@ -238,16 +238,16 @@ body {
 
 .calculator-keys button:hover {
     box-shadow: -3px -2px 2px #000, -2px -2px 2px #000, -1px -2px 2px #000, 0 -2px 2px #000, 1px 2px 2px #000, 2px 3px 2px #000, 3px 4px 2px #000, 4px 5px 2px #000, 5px 6px 2px #000, 6px 7px 2px #000;
-    animation: sparkle 0.3s alternate infinite;
+    animation: sparkle 0.3ms linear infinite;
     
 }
 
 .calculator-keys .operator:hover {
-    animation: sparkleOp 0.5s alternate infinite;
+    animation: sparkleOp 0.3ms linear infinite;
 }
 
 .operator.equal-key:hover {
-    animation: sparkle 0.3s alternate-reverse infinite;
+    animation: sparkle 0.3ms linear infinite;
 }
 
 @keyframes sparkle {
