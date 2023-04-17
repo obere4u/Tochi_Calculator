@@ -21,11 +21,14 @@ keyButtons.addEventListener("click", e => {
       const displayedNum = calculatorScreen.textContent;
       const previousKeyType = calculatorContainer.dataset.previousKeyType;
 
-      console.log(keyButton);
 
       if (!action) {
+          // clearCalculatorScreen();
+        if (previousKeyType === "calculate") {
         clearCalculatorScreen();
-        if (displayedNum === "0" || displayedNum === "operator") {
+        }
+
+        if (displayedNum === "0" || displayedNum === "operator" || previousKeyType === "clear") {
           calculatorScreen.textContent = displayedKey; //changes the displayed number to the key-value clicked
         } else {
           if (previousKeyType === "operator") {
@@ -36,11 +39,7 @@ keyButtons.addEventListener("click", e => {
           }
           calculatorContainer.dataset.previousKeyType = "number"; //sets the previousKeyTyped to number
         }
-        // set firstValue to displayedNum if previous key type was not an operator
-        // if (previousKeyType !== "operator") {
-        //   calculatorContainer.dataset.firstValue = displayedNum;
-        // }
-        //   console.log(keyButton);
+        calculatorContainer.dataset.previousKey = "number";
       } 
       
       if (
@@ -101,7 +100,7 @@ keyButtons.addEventListener("click", e => {
                 result = firstValue / secondValue;
                 break;
 
-              case "multiplication":
+              case "multiply":
                 result = firstValue * secondValue;
                 break;
 
@@ -112,19 +111,24 @@ keyButtons.addEventListener("click", e => {
             calculatorContainer.dataset.previousKeyType = "calculate"; //so that it can remember the last operator key pressed/used
             calculatorScreen.dataset.firstValue = result; //firstValue is assigned the result value so that the result can be displayed or use for further calculation
             calculatorScreen.textContent = result; //displays the content of the result
-            
         }
 
         if (action === "clear") {
             calculatorScreen.textContent = "0";
-            calculatorContainer.dataset.previousKeyType = "clear";
+            calculatorContainer.dataset.firstValue = "";
+            calculatorContainer.dataset.operator = "";
         }
 
         
     }
     
     function clearCalculatorScreen() {
-        calculatorScreen.textContent = ""; //clears screen for next number
+        // const previousKeyType = calculatorContainer.dataset.previousKeyType;
+        calculatorScreen.textContent = "";
+        // calculatorContainer.dataset.previousKeyType = "clear";
+        // calculatorContainer.dataset.firstValue = "";
+        // calculatorContainer.dataset.operator = "";
+        
     }
     
 })

@@ -5,14 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="index.css">
     <title>Calculator App</title>
 </head>
 <body>
     <div class="calculator-wrapper">
         <h1>Calculator</h1>
         <div class="calculator-container">
-            <div type="text" class="calculator-screen" value="0" title="text-input" disabled>
+            <div type="text" class="calculator-screen" title="text-input" disabled>
                 <p class="screen-display">0</p>
             </div>
         
@@ -29,9 +29,9 @@
                 <button class="number eight" value="8">8</button>
                 <button class="number nine" value="9">9</button>
                 <button class="operator division-key" value="/" data-action="divide">/</button>
-                <button class="number zero">0</button>
+                <button class="number zero" value="0">0</button>
                 <button class="operator clear-key" value="clear" data-action="clear">AC</button>
-                <button class="decimal multiplication-key" value="." data-action="decimal">.</button>
+                <button class="decimal decimal-key" value="." data-action="decimal">.</button>
                 <button class="operator multiplication" value="*" data-action="multiply">&times;</button>
                 <button class="operator equal-key" value="=" data-action="calculate">=</button>
             </div>
