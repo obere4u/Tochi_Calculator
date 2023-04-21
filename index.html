@@ -5,7 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="index.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="stylesheet" href="style.css">
     <title>Calculator App</title>
 </head>
     <body>
@@ -13,28 +17,37 @@
             <div class="calculator-wrapper">
                 <h1>Calculator</h1>
                 <div class="calculator-container">
-                    <div type="text" class="calculator-screen" title="text-input" disabled>
-                    <p class="screen-display">0</p>
-                </div>
+                    <div type="text" class="calculator-screen">
+                        <span class="calculator-screen__prev">0</span>
+                        <span class="calculator-screen__curr">0</span>
+                    </div>
             
-                <div class="calculator-keys">
-                    <button class="number one" value="1">1</button>
-                    <button class="number two" value="2">2</button>
-                    <button class="number three" value="3">3</button>
-                    <button class="operator addition-key" value="+" data-action="add">+</button>
-                    <button class="number four" value="4">4</button>
-                    <button class="number five" value="5">5</button>
-                    <button class="number six" value="6">6</button>
-                    <button class="operator subtract-key" value="-" data-action="subtract">-</button>
-                    <button class="number seven" value="7">7</button>
-                    <button class="number eight" value="8">8</button>
-                    <button class="number nine" value="9">9</button>
-                    <button class="operator division-key" value="/" data-action="divide">/</button>
-                    <button class="number zero" value="0">0</button>
-                    <button class="operator clear-key" value="clear" data-action="clear">AC</button>
-                    <button class="decimal decimal-key" value="." data-action="decimal">.</button>
-                    <button class="operator multiplication" value="*" data-action="multiply">&times;</button>
-                    <button class="operator equal-key" value="=" data-action="calculate">=</button>
+                    <div class="calculator-keys">
+                        <button class="operator bakspace-key" value="delete" data-action="delete">&larr;</button>
+                        <button class="number two" value="2">2</button>
+                        <button class="number three" value="3">3</button>
+                        <button class="operator addition-key" value="+" data-action="add">+</button>
+                        
+                        <button class="number one" value="1">1</button>
+                        <button class="number four" value="4">4</button>
+                        <button class="number five" value="5">5</button>
+                        <button class="operator subtract-key" value="-" data-action="subtract">-</button>
+
+                        <button class="number six" value="6">6</button>
+                        <button class="number seven" value="7">7</button>
+                        <button class="number eight" value="8">8</button>
+                        <button class="operator multiplication" value="*" data-action="multiply">&times;</button>
+
+                        <button class="number nine" value="9">9</button>
+                        <button class="operator clear-key" value="clear" data-action="clear">AC</button>
+                        <button class="decimal decimal-key" value="." data-action="decimal">&bull;</button> <!-- used UTF-8 code -->
+                        <button class="operator division-key" value="/" data-action="divide">/</button>
+
+                        <button button class="operator percentage-key" value="percentage" data-action="percent">&#37;</button>
+                        <button class="number zero" value="0">0</button>
+                        <button class="operator equal-key" value="=" data-action="calculate">=</button>
+
+                    </div>
                 </div>
             </div>
         </div>

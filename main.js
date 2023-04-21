@@ -5,13 +5,43 @@
 document.addEventListener('DOMContentLoaded', function(){
   // Selectors
   const calculatorContainer = document.querySelector(".calculator-wrapper");
-  const calculatorScreen = document.querySelector(
-    ".calculator-screen .screen-display"
-  );
+  const calculatorScreenPrev = document.querySelector(
+    ".calculator-screen__prev"
+  ); //displays the element being calculated
+  const calculatorScreenCurr = document.querySelector(
+    ".calculator-screen__curr"
+  ); // displays the result of the calculation
   const keyButtons = document.querySelector(".calculator-keys");
-  const addButton = document.querySelector(".addition");
 
-  const resetButton = document.querySelector(".clear");
+  //Checks the max number displayed on the screen
+  function maxScreenDigit(){
+    const maxDigit = 10;
+    calculatorScreenCurr.length > maxDigit ? calculatorScreenCurr = calculatorScreenCurr.toExponential(2) : calculatorScreenCurr;
+  }
+
+  // makes sure the input doesn't exceed the screen size
+  function resizeFontSize() {
+    const containerWidth = document.querySelector('.computer-screen');
+    let calculatorScreenPrevWidth = calculatorScreenPrev.clientWidth;
+    let calculatorScreenCurrWidth = calculatorScreenCurr.clientWidth;
+    let maxScreenWidth = Math.floor(containerWidth * 90);
+    let calculatorScreenPrevFontSize = 1.5;
+    let calculatorScreenCurrFontSize = 1.5;
+    
+    while (calculatorScreenPrevWidth > maxScreenWidth && calculatorScreenCurrFontSize > 0) {
+      calculatorScreenPrevFontSize -= 0.05;
+      calculatorScreenPrev.style.fontSize = calculatorScreenPrevFontSize + "rem";
+      calculatorScreenPrevWidth = calculatorScreenPrev.clientWidth;
+    }
+    
+    while (calculatorScreenCurrWidth > maxScreenWidth && calculatorScreenCurrFontSize > 0) {
+      calculatorScreenCurrFontSize -= 0.05;
+      calculatorScreenCurr.style.fontSize = calculatorScreenCurrFontSize + "rem";
+      calculatorScreenCurrWidth = calculatorScreenCurr.clientWidth;
+    }
+  }
+
+
 
   //Event Listeners
 
@@ -20,13 +50,13 @@ document.addEventListener('DOMContentLoaded', function(){
       const keyButton = e.target;
       const action = keyButton.dataset.action;
       const displayedKey = keyButton.textContent;
-      const displayedNum = calculatorScreen.textContent;
+      const displayedNum = calculatorScreenCurr.textContent;
       const previousKeyType = calculatorContainer.dataset.previousKeyType;
 
       if (!action) {
-        // clearCalculatorScreen();
+        // clearCalculatorScreenCurr();
         if (previousKeyType === "calculate") {
-          clearCalculatorScreen();
+          clearCalculatorScreenCurr();
         }
 
         if (
@@ -34,13 +64,13 @@ document.addEventListener('DOMContentLoaded', function(){
           displayedNum === "operator" ||
           previousKeyType === "clear"
         ) {
-          calculatorScreen.textContent = displayedKey; //changes the displayed number to the key-value clicked
+          calculatorScreenCurr.textContent = displayedKey; //changes the displayed number to the key-value clicked
         } else {
           if (previousKeyType === "operator") {
-            calculatorScreen.textContent =
+            calculatorScreenCurr.textContent =
               displayedNum.slice(0, -1) + displayedKey;
           } else {
-            calculatorScreen.textContent += displayedKey;
+            calculatorScreenCurr.textContent += displayedKey;
           }
           calculatorContainer.dataset.previousKeyType = "number"; //sets the previousKeyTyped to number
         }
@@ -53,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function(){
         action === "multiply" ||
         action === "divide"
       ) {
-        calculatorScreen.textContent = displayedKey;
+        calculatorScreenCurr.textContent = displayedKey;
         // If the previous key type was an operator, replace it with the new operator
         if (previousKeyType === "operator") {
           calculatorContainer.dataset.operator = action;
@@ -80,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function(){
       if (action === "decimal") {
         if (!displayedNum.includes(".")) {
           //checks if the displayed value on screen contains decimal or not
-          calculatorScreen.textContent += ".";
+          calculatorScreenCurr.textContent += ".";
         }
         calculatorContainer.dataset.previousKeyType = "decimal";
       }
@@ -113,25 +143,38 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         calculatorContainer.dataset.previousKeyType = "calculate"; //so that it can remember the last operator key pressed/used
-        calculatorScreen.dataset.firstValue = result; //firstValue is assigned the result value so that the result can be displayed or use for further calculation
-        calculatorScreen.textContent = result; //displays the content of the result
+        calculatorScreenCurr.dataset.firstValue = result; //firstValue is assigned the result value so that the result can be displayed or use for further calculation
+        calculatorScreenCurr.textContent = result; //displays the content of the result
       }
 
       if (action === "clear") {
-        calculatorScreen.textContent = "0";
+        calculatorScreenCurr.textContent = "0";
         calculatorContainer.dataset.firstValue = "";
         calculatorContainer.dataset.operator = "";
       }
+      
+      if (action === "delete") {
+        calculatorScreenCurr.textContent =
+          displayedNum.slice(0, -1); //deletes a number from the displayed number
+      }
+      
+      if (action === "percent") {
+        calculatorScreenCurr.textContent = displayedNum / 100; //finds the percentage of a number
+      }
     }
 
-    function clearCalculatorScreen() {
+    function clearCalculatorScreenCurr() {
       // const previousKeyType = calculatorContainer.dataset.previousKeyType;
-      calculatorScreen.textContent = "";
+      calculatorScreenCurr.textContent = "";
       // calculatorContainer.dataset.previousKeyType = "clear";
       // calculatorContainer.dataset.firstValue = "";
       // calculatorContainer.dataset.operator = "";
     }
+    maxScreenDigit();
   });
+  maxScreenDigit();
+  resizeFontSize();
+  window.addEventListener("resize", resizeFontSize);
 })
 
 

@@ -1,0 +1,225 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    
+    --step--2: clamp(0.69rem, calc(0.51rem + 1.43vw), 0.96rem);
+    --step--1: clamp(0.78rem, calc(0.50rem + 2.25vw), 1.20rem);
+    --step-0: clamp(0.88rem, calc(0.46rem + 3.33vw), 1.50rem);
+    --step-1: clamp(0.98rem, calc(0.39rem + 4.75vw), 1.88rem);
+    --step-2: clamp(1.11rem, calc(0.28rem + 6.59vw), 2.34rem);
+    --step-3: clamp(1.25rem, calc(0.12rem + 8.98vw), 2.93rem);
+    --step-4: clamp(1.40rem, calc(-0.10rem + 12.05vw), 3.66rem);
+    --step-5: clamp(1.58rem, calc(-0.42rem + 16.00vw), 4.58rem);
+
+}
+/* set property of the gradient angle */
+@property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+:root{
+    --darkBlue: #5a5acfad;
+    --lightBlue: #084a698c;
+    --lightYellow: #7385277e;
+    --hotMagenta: #961a395e;
+    --purple: #94368f98;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('./Assests/fonts/Roboto-Black-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('./Assests/fonts/Roboto-Regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('./Assests/fonts/Roboto-Light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'AnteriSignature';
+    src: url('./Assests/fonts/AnteriSignature_PERSONAL_USE_ONLY.otf') format('opentype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Hasklug';
+    src: local('Hasklug Light Nerd Font Complete Windows Compatible');
+}
+
+body {
+    min-height: 100vh;
+    background: #363636;
+}
+
+.calculator {
+    display: grid;
+    place-items: center;
+    width: 90%;
+    margin: 0 auto;
+    
+}
+
+.calculator-wrapper {
+    display: grid;
+    place-items: center;
+
+    max-width: 500px;
+    margin-top: 0.8em;
+}
+
+
+
+.calculator-wrapper h1 {
+  font-family:  Hasklug, 'AnteriSignature', 'Roboto', sans-serif;  
+  font-weight: 800;
+  font-size: var(--step-1);
+  text-transform: uppercase;
+  text-align: center;
+
+  padding: 0.1em 0.5em;
+  margin-bottom: 0.5em;
+
+  color: transparent;
+  text-shadow: 1px 1px 1px #080808e7, 1px 2px 1px #0e0d0de7, 1px 3px 1px #f8f1f1e7, 1px 4px 1px #070707e7, 1px 5px 1px #0c0c0ce7, 1px 6px 1px #f8f6f6e7, 1px 7px 1px #f7f2f2,  1px 18px 6px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 350px) {
+    .calculator-wrapper h1 {
+        font-size: 1rem;
+    }
+
+    .calculator-container {
+        width: 100%;
+    }
+}
+
+.calculator-container {
+    width: min(300px, 85%);
+    border-radius: 5px;
+    margin: 0 auto;
+    
+    background: #000 !important;
+    color: #fff;
+    -webkit-box-shadow: 0 0 5px rgba(256, 256, 256, 1);
+    -moz-box-shadow: 0 0 5px rgba(256, 256, 256, 1);
+    box-shadow: 0 0 5px rgba(256, 256, 256, 1);
+}
+
+
+.calculator-screen {
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    min-height: 100px;
+    /* max-width: 100%; */
+
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    padding: 1em;
+
+    text-align: right;
+    font-family: Hasklug, 'Roboto', sans-serif;
+
+    -webkit-box-shadow: 0 0  5px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0 0  5px rgba(0,0,0,0.75);
+    box-shadow: 0 0 5px rgb(240, 240, 240);
+}
+
+.calculator-screen__prev, .calculator-screen__curr {
+    display: inline-block;
+    max-width: 50%;
+    /* margin: auto; */
+    /* height: 70%; */
+
+    font-size: 1.5rem;
+    overflow-wrap: anywhere;
+    font-weight: 800;
+    word-wrap: break-word; 
+    white-space: nowrap;
+}
+
+.calculator-screen__prev {
+    font-size: 1rem;
+}
+
+.calculator-keys {
+    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    align-content: space-around;
+    justify-content: space-around ;
+    grid-gap: 1em;
+    padding: 1em;
+
+}
+
+.calculator-keys button {
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    margin: auto;
+    padding: 1rem;
+
+    font-family: Hasklug, 'Roboto', sans-serif;
+    font-weight: 500;
+    font-size: 1.3rem;
+    text-align: center;
+    background: #000;
+    color: #fff;
+
+    box-shadow: -3px -2px 2px #7a7979, -2px -2px 2px #777575, 1px 2px 2px #7a7878;
+    transition: opacity 0.2s ease-in;
+    
+}
+
+.calculator-keys button:hover {
+   opacity: 0.3;
+    
+}
+
+@media (max-width: 350px) {
+
+    .calculator-keys{
+        grid-gap: 0.5em;
+    }
+  
+}
+
+.operator.equal-key {
+    color: #ffd700;
+    width: 90%;
+    grid-column: 3 / 5; /* grid column start/ grid column end */
+    text-align: center;
+    transition: opacity 0.2s ease-in;
+    
+}
+
+.operator.clear-key {
+    background: #000;
+    color: #ffd700;
+    letter-spacing: 2px;
+    transition: opacity 0.3s ease-in;
+}
+
+
+
+
+
