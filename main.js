@@ -19,32 +19,6 @@ document.addEventListener('DOMContentLoaded', function(){
     calculatorScreenCurr.length > maxDigit ? calculatorScreenCurr = calculatorScreenCurr.toExponential(2) : calculatorScreenCurr;
   }
 
-  // makes sure the input doesn't exceed the screen size
-  function resizeFontSize() {
-    const containerWidth = document.querySelector('.computer-screen');
-    let calculatorScreenPrevWidth = calculatorScreenPrev.clientWidth;
-    let calculatorScreenCurrWidth = calculatorScreenCurr.clientWidth;
-    let maxScreenWidth = Math.floor(containerWidth * 90);
-    let calculatorScreenPrevFontSize = 1.5;
-    let calculatorScreenCurrFontSize = 1.5;
-    
-    while (calculatorScreenPrevWidth > maxScreenWidth && calculatorScreenCurrFontSize > 0) {
-      calculatorScreenPrevFontSize -= 0.05;
-      calculatorScreenPrev.style.fontSize = calculatorScreenPrevFontSize + "rem";
-      calculatorScreenPrevWidth = calculatorScreenPrev.clientWidth;
-    }
-    
-    while (calculatorScreenCurrWidth > maxScreenWidth && calculatorScreenCurrFontSize > 0) {
-      calculatorScreenCurrFontSize -= 0.05;
-      calculatorScreenCurr.style.fontSize = calculatorScreenCurrFontSize + "rem";
-      calculatorScreenCurrWidth = calculatorScreenCurr.clientWidth;
-    }
-  }
-
-
-
-  //Event Listeners
-
   keyButtons.addEventListener("click", (e) => {
     if (e.target.matches("button")) {
       const keyButton = e.target;
@@ -54,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function(){
       const previousKeyType = calculatorContainer.dataset.previousKeyType;
 
       if (!action) {
-        // clearCalculatorScreenCurr();
         if (previousKeyType === "calculate") {
           clearCalculatorScreenCurr();
         }
@@ -65,10 +38,11 @@ document.addEventListener('DOMContentLoaded', function(){
           previousKeyType === "clear"
         ) {
           calculatorScreenCurr.textContent = displayedKey; //changes the displayed number to the key-value clicked
+
         } else {
           if (previousKeyType === "operator") {
-            calculatorScreenCurr.textContent =
-              displayedNum.slice(0, -1) + displayedKey;
+          calculatorScreenCurr.textContent = displayedNum.slice(0, -1) + displayedKey;
+
           } else {
             calculatorScreenCurr.textContent += displayedKey;
           }
@@ -84,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function(){
         action === "divide"
       ) {
         calculatorScreenCurr.textContent = displayedKey;
+        
         // If the previous key type was an operator, replace it with the new operator
         if (previousKeyType === "operator") {
           calculatorContainer.dataset.operator = action;
@@ -98,11 +73,14 @@ document.addEventListener('DOMContentLoaded', function(){
             0,
             indexOfOperator
           );
+          
         } else {
-          //else if no operator is found, set all displayed number as first value
-          calculatorContainer.dataset.firstValue = displayedNum;
+            //else if no operator is found, set all displayed number as first value
+            calculatorContainer.dataset.firstValue = displayedNum;
         }
 
+        calculatorScreenPrev.textContent = `${displayedNum}  ${displayedKey}`;
+        // calculatorScreenPrev.textContent = calculatorScreenCurr.textContent;
         calculatorContainer.dataset.operator = action;
         calculatorContainer.dataset.previousKeyType = "operator";
       }
@@ -143,14 +121,15 @@ document.addEventListener('DOMContentLoaded', function(){
         }
 
         calculatorContainer.dataset.previousKeyType = "calculate"; //so that it can remember the last operator key pressed/used
+        calculatorScreenPrev.textContent = `
+          ${calculatorScreenPrev.textContent}  ${secondValue}`;
         calculatorScreenCurr.dataset.firstValue = result; //firstValue is assigned the result value so that the result can be displayed or use for further calculation
         calculatorScreenCurr.textContent = result; //displays the content of the result
       }
 
       if (action === "clear") {
+        clearCalculatorScreenCurr();
         calculatorScreenCurr.textContent = "0";
-        calculatorContainer.dataset.firstValue = "";
-        calculatorContainer.dataset.operator = "";
       }
       
       if (action === "delete") {
@@ -163,18 +142,14 @@ document.addEventListener('DOMContentLoaded', function(){
       }
     }
 
-    function clearCalculatorScreenCurr() {
-      // const previousKeyType = calculatorContainer.dataset.previousKeyType;
-      calculatorScreenCurr.textContent = "";
-      // calculatorContainer.dataset.previousKeyType = "clear";
-      // calculatorContainer.dataset.firstValue = "";
-      // calculatorContainer.dataset.operator = "";
+    function clearCalculatorScreenCurr() {      
+      calculatorContainer.dataset.firstValue = "";
+      calculatorContainer.dataset.operator = "";
+      calculatorScreenPrev.textContent = "";
     }
+
     maxScreenDigit();
   });
-  maxScreenDigit();
-  resizeFontSize();
-  window.addEventListener("resize", resizeFontSize);
 })
 
 
