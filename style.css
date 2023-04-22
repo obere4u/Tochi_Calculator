@@ -51,14 +51,6 @@
     font-style: normal;
 }
 
-
-@font-face {
-    font-family: 'AnteriSignature';
-    src: url('./Assests/fonts/AnteriSignature_PERSONAL_USE_ONLY.otf') format('opentype');
-    font-weight: 800;
-    font-style: normal;
-}
-
 @font-face {
     font-family: 'Hasklug';
     src: local('Hasklug Light Nerd Font Complete Windows Compatible');
@@ -88,7 +80,7 @@ body {
 
 
 .calculator-wrapper h1 {
-  font-family:  Hasklug, 'AnteriSignature', 'Roboto', sans-serif;  
+  font-family:  Hasklug, 'Roboto', sans-serif;  
   font-weight: 800;
   font-size: var(--step-1);
   text-transform: uppercase;
